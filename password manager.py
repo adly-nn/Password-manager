@@ -44,13 +44,6 @@ class PasswordManager:
         return self.password_dict[site]
     
 def main():
-    password = {
-        "email" : "myfbpassword",
-        "facebook" : "1234567",
-        "youtube" : "helloworld123",
-        "something" : "myfavpassword_123"
-    }
-
     pm = PasswordManager()
 
     print(""" what do you want to do
@@ -74,14 +67,17 @@ def main():
              path = input("enter path: ")
              pm.load_key(path)
         elif choice == "3":
-             path = input("enter path: ")
-             pm.create_password_file(path, password)
+            path = input("Enter path to create the password file: ")
+            pm.create_password_file(path)
+            print("Password file created.")
         elif choice == "4":
              path = input("enter path: ")
              pm.load_password_file(path)
-        elif choice == "5":
-             site = input("enter site: ")
-             pm.add_password(site, password)
+       elif choice == "5":
+            site = input("Enter site: ")
+            password = input("Enter password: ")
+            pm.add_password(site, password)
+            print(f"Password for {site} added.")
         elif choice == "6":
              site = input("what site do you want: ")
              print(f"Password for{site} is {pm.get_password(site)}")
